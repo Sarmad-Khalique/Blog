@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header/header.component";
+import Homepage from "./pages/Homepage/home.page";
+import SignInAndSignUpPage from "./pages/SignInAndSignUpPage/signinandsignup.page";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Homepage />}/>
+        <Route exact path="/login" element={<SignInAndSignUpPage />}/>
+      </Routes>
+    </div>
+  );
+};
 
 export default App;
