@@ -10,7 +10,7 @@ const CustomCard = ({ title, body, publish, slug }) => {
   const date = publish.slice(0, publish.indexOf("T"));
   
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ minWidth: 330, maxWidth:345 }}>
       <CardMedia
         component="img"
         alt="green iguana"
