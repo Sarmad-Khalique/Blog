@@ -1,30 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { LoginConatainer, FormContainer } from "./login.styles";
 import { Button } from "@mui/material";
-import FormInput from "../Form-input/FormInput"
+import FormInput from "../Form-input/FormInput";
 import SignUp from "../Sign-Up/sign-up.component";
+import { UserContext } from "../../context/user/user.provider";
 
 const Login = () => {
+  const { loginUser } = useContext(UserContext);
+
   const [userCredentials, setUserCredentials] = useState({
     username: "",
-    password: ""
+    password: "",
   });
 
   const handleChange = (e) => {
-    let {name, value} = e.target;
+    let { name, value } = e.target;
 
-    setUserCredentials({...userCredentials, [name]:value});
+    setUserCredentials({ ...userCredentials, [name]: value });
+  };
 
-  }
-
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    let {username, password} = userCredentials;
-    console.log("Username: ", username, "Password: ", password);
-  }
+    const { username, password } = userCredentials;
 
-  let {username, password} = userCredentials;
+    loginUser({ username, password });
+  };
+
+  let { username, password } = userCredentials;
   return (
     <LoginConatainer>
       <Typography variant="h3" color="secondary">
@@ -45,9 +48,16 @@ const Login = () => {
           value={password}
           label="Password"
         />
-        <Button type="submit" variant="contained" color="secondary" sx={{width: "100%"}}>Sign in</Button>
-        <SignUp modalText="Create Account"/>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          sx={{ width: "100%" }}
+        >
+          Sign in
+        </Button>
       </FormContainer>
+      <SignUp modalText="Create Account" />
     </LoginConatainer>
   );
 };

@@ -3,12 +3,15 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import PostProvider from "./context/provider/posts/posts.provider";
+import UserProvider from "./context/user/user.provider";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
-  <PostProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </PostProvider>
+  <UserProvider>
+    <PostProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PostProvider>
+  </UserProvider>
 );

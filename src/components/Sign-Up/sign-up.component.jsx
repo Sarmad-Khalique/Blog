@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -24,30 +24,41 @@ const style = {
 const SignUp = ({ modalText }) => {
   const [open, setOpen] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
-      username: "",
-      password: "",
-      confirmPassword: ""
+    username: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleChange = (e) => {
-      let {name, value} = e.target;
+    let { name, value } = e.target;
+    console.log("Changing");
+    setUserCredentials({
+      ...userCredentials,
+      [name]: value,
+    });
+  };
 
-      setUserCredentials({
-          ...userCredentials,
-          [name]: value
-      })
-  }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    
+    let { username, password, confirmPassword } = userCredentials;
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+    } else {
+      console.log("Username: ", username, "Password: ", password);
+    }
+  };
 
-  let {username, password, confirmPassword} = userCredentials;
+  let { username, password, confirmPassword } = userCredentials;
   return (
     <React.Fragment>
       <Button
         variant="outlined"
         color="secondary"
-        sx={{ width: "100%", marginY: 1 }}
+        sx={{ width: "33%", marginY: 1 }}
         onClick={handleOpen}
       >
         {modalText}
@@ -67,7 +78,7 @@ const SignUp = ({ modalText }) => {
           >
             Create Account
           </Typography>
-          <FormContainer>
+          <FormContainer onSubmit={onSubmit}>
             <FormInput
               type="username"
               name="username"
@@ -78,18 +89,25 @@ const SignUp = ({ modalText }) => {
             <FormInput
               type="password"
               name="password"
-              onChange={() => {}}
+              onChange={handleChange}
               value={password}
               label="Password"
             />
             <FormInput
               type="password"
-              name="password"
-              onChange={()=>{}}
+              name="confirmPassword"
+              onChange={handleChange}
               value={confirmPassword}
               label="Confirm Password"
             />
-            <Button variant="contained" color="secondary" sx={{width:"100%"}}>Sign Up</Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              sx={{ width: "100%" }}
+            >
+              Sign up
+            </Button>
           </FormContainer>
         </Box>
       </Modal>

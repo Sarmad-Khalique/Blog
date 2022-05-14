@@ -13,7 +13,7 @@ const CustomCard = ({ title, body, publish, slug }) => {
     <Card sx={{ minWidth: 330, maxWidth:345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={title}
         height="200"
         image="https://images.unsplash.com/photo-1597239450996-ea7c2c564412?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
       />
