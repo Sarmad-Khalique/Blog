@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-const CustomCard = ({ title, body, publish, slug }) => {
+const CustomCard = ({ id,title, body, publish, slug }) => {
   const date = publish.slice(0, publish.indexOf("T"));
   
   return (
@@ -18,7 +18,7 @@ const CustomCard = ({ title, body, publish, slug }) => {
         image="https://images.unsplash.com/photo-1597239450996-ea7c2c564412?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
       />
       <CardContent>
-        <Link to={encodeURI(`${date}/${slug}/`)}>
+        <Link to={encodeURI(`posts/${date}/${id}/${slug}/`)}>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>

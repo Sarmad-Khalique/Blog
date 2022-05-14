@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { FormContainer } from "./sign-up.styles";
 import FormInput from "../Form-input/FormInput";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const style = {
   position: "absolute",
@@ -21,7 +23,17 @@ const style = {
   alignItems: "center",
 };
 
+const mobileStyle = {
+  ...style,
+  width: "90%",
+  left: "25%",
+  transform: "translate(-23%, -50%)",
+  p:1
+};
+
 const SignUp = ({ modalText }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
     username: "",
@@ -43,7 +55,7 @@ const SignUp = ({ modalText }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    
+
     let { username, password, confirmPassword } = userCredentials;
     if (password !== confirmPassword) {
       alert("Passwords don't match");
@@ -58,7 +70,9 @@ const SignUp = ({ modalText }) => {
       <Button
         variant="outlined"
         color="secondary"
-        sx={{ width: "33%", marginY: 1 }}
+        sx={
+          isMobile ? { width: "80%", marginY: 1 } : { width: "33%", marginY: 1 }
+        }
         onClick={handleOpen}
       >
         {modalText}
@@ -69,7 +83,7 @@ const SignUp = ({ modalText }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={isMobile ? mobileStyle : style}>
           <Typography
             id="modal-modal-title"
             variant="h4"

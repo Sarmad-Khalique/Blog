@@ -10,6 +10,8 @@ export const PostContext = createContext({
 const PostProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState({});
+  const [isFetched, setIsFetched] = useState(false);
 
   const fetchingPosts = async () => {
     const response = await axios.get(`${BASE_URL}/posts/`);
@@ -17,10 +19,18 @@ const PostProvider = ({ children }) => {
     setIsFetching(false);
   };
 
+  const fetchingPost = async (id) => {
+    const response = await axios.get(`${BASE_URL}/posts/${id}/`);
+    setPost(response.data);
+    setIsFetched(true);
+  }
   const values = {
+    post,
     posts,
+    isFetched,
     isFetching,
-    fetchingPosts
+    fetchingPost,
+    fetchingPosts,
   };
 
   return <PostContext.Provider value={values}>{children}</PostContext.Provider>;

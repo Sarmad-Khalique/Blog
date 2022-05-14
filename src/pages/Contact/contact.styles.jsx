@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const FormContainer = styled.form`
   width: 33%;
+  @media only screen and (max-width:600px){
+    width:80%;
+  }
 `;
 
 export const ContactContainer = styled.div`

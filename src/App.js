@@ -5,6 +5,7 @@ import Header from "./components/Header/header.component";
 import { UserContext } from "./context/user/user.provider";
 import Contact from "./pages/Contact/contact.page";
 import Homepage from "./pages/Homepage/home.page";
+import PostPage from "./pages/Postpage/post.page";
 import SignInAndSignUpPage from "./pages/SignInAndSignUpPage/signinandsignup.page";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Homepage />} />
         <Route exact path="/login" element={userLoggedIn?<Navigate to="/"/>:<SignInAndSignUpPage />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="posts/:date/:id/:slug" element={<PostPage />} />
       </Routes>
     </div>
   );

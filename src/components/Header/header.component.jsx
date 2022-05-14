@@ -7,17 +7,17 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/user/user.provider";
 import { useMediaQuery } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import DrawerComponent from "../Drawer/drawer.component";
 
 const Header = () => {
   const { userLoggedIn, logoutUser } = useContext(UserContext);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: 2 }}>
-      <AppBar color="transparent" position="static">
+    <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
+      <AppBar position="fixed" sx={{ backgroundColor: "#fff" }}>
         <Toolbar>
           <Typography
             variant="h6"
@@ -37,8 +37,9 @@ const Header = () => {
               <Link to="/contact">
                 <Button color="inherit">Contact</Button>
               </Link>
-              <Button color="inherit">About</Button>
-
+              <Link to="/">
+                <Button color="inherit">About</Button>
+              </Link>
               {userLoggedIn ? (
                 <Button
                   onClick={() => logoutUser()}

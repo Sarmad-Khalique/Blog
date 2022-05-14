@@ -30,7 +30,7 @@ const Login = () => {
   let { username, password } = userCredentials;
   return (
     <LoginConatainer>
-      <Typography variant="h3" color="secondary">
+      <Typography variant="h3" color="secondary" sx={{textAlign:"center"}}>
         Login
       </Typography>
       <FormContainer onSubmit={onSubmit}>

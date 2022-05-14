@@ -39,7 +39,7 @@ const Contact = () => {
   let { name, email, message } = userData;
   return (
     <ContactContainer>
-      <Typography variant="h3" color="secondary">
+      <Typography variant="h3" color="secondary" sx={{textAlign:"center"}}>
         Contact Us
       </Typography>
       <FormContainer onSubmit={onSubmit}>
